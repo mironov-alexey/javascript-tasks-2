@@ -104,7 +104,7 @@ module.exports.showTable = function showTable(filename) {
     console.log('┌' + '─'.repeat(maxNameLength) + '┬' + '─'.repeat(maxPhoneLength) + '╥' +
         '─'.repeat(maxEmailLength) + '┐');
     console.log('│' + ' '.repeat(Math.ceil((maxNameLength - 'Name'.length) / 2)) +
-                'Name' + ' '.repeat(Math.round((maxNameLength - 'Name'.length) / 2)) + '│' +
+                'Name' + ' '.repeat(Math.floor((maxNameLength - 'Name'.length) / 2)) + '│' +
                 ' '.repeat(Math.ceil((maxPhoneLength - 'Phone number'.length) / 2)) +
                 'Phone number' +
                 ' '.repeat(Math.floor((maxPhoneLength - 'Phone number'.length) / 2)) + '║' +

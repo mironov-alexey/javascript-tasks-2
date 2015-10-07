@@ -4,7 +4,7 @@ var phoneBook = require('./phoneBook');
 
 // Добавляем записи
 phoneBook.add('Сергей', '7 999 6667778', 'Gs@example.com');
-phoneBook.add('Сергей 2', '999 4433444', 'gs@example.com');
+phoneBook.add('Деньги', '8 800 5553535', 'dengi@example.com');
 phoneBook.add('Олег', '+7 (999) 777-7-777', 'just7@yandex-team.ru');
 
 // Невалидные данные не должны попадать в книгу!
