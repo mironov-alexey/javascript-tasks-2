@@ -86,6 +86,20 @@ String.prototype.repeat = function (n) {
     return r;
 };
 
+function getPrintLineFunction(maxNameLength, maxPhoneLength, maxEmailLength) {
+    return function (first, second, third) {
+        console.log('│' + ' '.repeat(Math.ceil((maxNameLength - first.length) / 2)) +
+                    first + ' '.repeat(Math.floor((maxNameLength - first.length) / 3)) + '│' +
+                    ' '.repeat(Math.ceil((maxPhoneLength - second.length) / 2)) +
+                    second +
+                    ' '.repeat(Math.floor((maxPhoneLength - second.length) / 2)) + '║' +
+                    ' '.repeat(Math.ceil((maxEmailLength - third.length) / 2)) + third +
+                    ' '.repeat(Math.floor((maxEmailLength - third.length) / 2)) +
+                    '│'
+                    );
+    };
+}
+
 module.exports.showTable = function showTable(filename) {
     var maxNameLength = 0;
     var maxEmailLength = 0;
@@ -101,31 +115,16 @@ module.exports.showTable = function showTable(filename) {
             maxPhoneLength = phoneBook[key].phone.length;
         }
     }
+    var printLine = getPrintLineFunction(maxNameLength, maxPhoneLength, maxEmailLength);
     console.log('┌' + '─'.repeat(maxNameLength) + '┬' + '─'.repeat(maxPhoneLength) + '╥' +
         '─'.repeat(maxEmailLength) + '┐');
-    console.log('│' + ' '.repeat(Math.ceil((maxNameLength - 'Name'.length) / 2)) +
-                'Name' + ' '.repeat(Math.floor((maxNameLength - 'Name'.length) / 2)) + '│' +
-                ' '.repeat(Math.ceil((maxPhoneLength - 'Phone number'.length) / 2)) +
-                'Phone number' +
-                ' '.repeat(Math.floor((maxPhoneLength - 'Phone number'.length) / 2)) + '║' +
-                ' '.repeat(Math.ceil((maxEmailLength - 'Email'.length) / 2)) + 'Email' +
-                ' '.repeat(Math.floor((maxEmailLength - 'Email'.length) / 2)) +
-                '│'
-                );
+    printLine('Name', 'Phone number', 'Email');
     Object.values(phoneBook).forEach(function (record) {
         console.log(
             '├' + '─'.repeat(maxNameLength) + '┼' + '─'.repeat(maxPhoneLength) +
             '╫' + '─'.repeat(maxEmailLength) + '┤');
-        console.log(
-            '│' + ' '.repeat(Math.ceil((maxNameLength - record.name.length) / 2)) + record.name +
-            ' '.repeat(Math.floor((maxNameLength - record.name.length) / 2)) + '│' +
-            ' '.repeat(Math.ceil((maxPhoneLength - record.phone.length) / 2)) + record.phone +
-            ' '.repeat(Math.floor((maxPhoneLength - record.phone.length) / 2)) + '║' +
-            ' '.repeat(Math.ceil((maxEmailLength - record.email.length) / 2)) +
-            record.email + ' '.repeat(Math.floor((maxEmailLength - record.email.length) / 2)) +
-            '│');
+        printLine(record.name, record.phone, record.email);
     });
     console.log('└' + '─'.repeat(maxNameLength) + '┴' +
                 '─'.repeat(maxPhoneLength) + '╨' + '─'.repeat(maxEmailLength) + '┘');
-
 };
