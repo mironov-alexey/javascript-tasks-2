@@ -10,7 +10,10 @@ phoneBook.add('Олег', '+7 (999) 777-7-777', 'just7@yandex-team.ru');
 // Невалидные данные не должны попадать в книгу!
 phoneBook.add('Честный Хрюндель', 'invalid phone777', 'honest-hrundel');
 
-// phoneBook.find('777');
+
+phoneBook.find('ya');
+phoneBook.remove('777');
+phoneBook.find('ya');
 // Выводит построчно записи, все поля через запятую:
 // Сергей, +7 (999) 666-7-778, gogolef@yandex-team.ru
 // Олег, +7 (999) 777-7-777, just7@yandex-team.ru
@@ -31,7 +34,7 @@ phoneBook.add('Честный Хрюндель', 'invalid phone777', 'honest-hru
 
 
 // // Экспортируем записи, пример файла рядом
-phoneBook.importFromCsv('backup.csv');
+// phoneBook.importFromCsv('backup.csv');
 // phoneBook.find('m');
 // phoneBook.remove('777');
 // phoneBook.find('');
